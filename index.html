@@ -18,6 +18,12 @@
     input, select, button { font-family: inherit; }
     input[type=date]::-webkit-calendar-picker-indicator { filter: invert(1); }
     ::-webkit-scrollbar { display: none; }
+    .safe-header {
+      padding-top: max(16px, env(safe-area-inset-top));
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    .safe-bottom { padding-bottom: max(80px, calc(80px + env(safe-area-inset-bottom))); }
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
   </style>
@@ -119,11 +125,11 @@ function App() {
   );
 
   return (
-    <div style={{minHeight:'100vh',background:P.bg,color:P.text,paddingBottom:80}}>
+    <div className="safe-bottom" style={{minHeight:'100vh',background:P.bg,color:P.text}}>
 
       {/* Header */}
       <div style={{background:P.card,borderBottom:`1px solid ${P.border}`,position:'sticky',top:0,zIndex:20}}>
-        <div style={{maxWidth:640,margin:'0 auto',padding:'16px 16px 0'}}>
+        <div className="safe-header" style={{maxWidth:640,margin:'0 auto',paddingBottom:0}}>
           <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:14}}>
             <div>
               <div style={{fontSize:10,letterSpacing:3,color:P.green,textTransform:'uppercase',marginBottom:2,fontWeight:700}}>Совместный</div>
